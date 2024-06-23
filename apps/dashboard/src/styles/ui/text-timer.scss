@@ -1,0 +1,27 @@
+.ui-text-timer {
+    line-height: 1;
+
+    &--blink {
+        animation: blink .3s ease;
+    }
+    &--reblink {
+        animation: reblink .3s ease;
+    }
+}
+
+@keyframes blink {
+    from {
+        opacity: .5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes reblink {
+    from {
+        opacity: .5;
+    }
+    to {
+        opacity: 1;
+    }
+}

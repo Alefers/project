@@ -1,0 +1,53 @@
+.ui-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+
+    &__total {
+        flex: 0 0 200px;
+        width: 200px;
+        color: $textLight;
+
+        span {
+            color: $textMedium;
+        }
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+
+        .svg-icon {
+            font-size: 12px;
+        }
+    }
+    &__action-arrow {
+        padding: 12px;
+        margin: 0 16px;
+        cursor: pointer;
+
+        &--prev {
+            transform: rotate(90deg);
+        }
+        &--next {
+            transform: rotate(-90deg);
+        }
+        &--disabled {
+            opacity: .3;
+            pointer-events: none;
+        }
+    }
+    &__filter {
+        flex: 0 0 200px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: $textMedium;
+
+        .ui-select {
+            width: 70px;
+            margin-left: 8px;
+        }
+    }
+}

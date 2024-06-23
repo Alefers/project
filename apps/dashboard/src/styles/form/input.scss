@@ -1,0 +1,139 @@
+.ui-input {
+    position: relative;
+
+    &__input {
+        height: $inputHeight;
+        width: 100%;
+        padding: 0 $inputBasePadding;
+        font-size: $inputFontSize;
+        font-weight: $inputFontWeight;
+        color: $input;
+        border-radius: $borderRadius;
+        background: $inputBg;
+        border: 1px solid $inputBorder;
+        transition: background-color .2s ease;
+
+        &::placeholder {
+            color: $inputPlaceholder;
+        }
+        &:not(:focus):hover {
+            background: $inputHoverBg;
+        }
+        &:focus {
+            background: $inputFocusBg;
+        }
+    }
+    &__pass-toggle {
+        position: absolute;
+        z-index: 1;
+        top: calc(50% - 14px);
+        right: 15px;
+        padding: 5px 5px 5px 0;
+        cursor: pointer;
+
+        .svg-icon {
+            font-size: 18px;
+            color: $inputIcon;
+        }
+    }
+    &__loader {
+        position: absolute;
+        z-index: 1;
+        top: calc(50% - 8px);
+        right: 15px;
+        opacity: .5;
+        pointer-events: none;
+
+        .svg-icon {
+            font-size: 16px;
+        }
+    }
+    &__icon {
+        position: absolute;
+        top: 14px;
+        left: 11px;
+        z-index: 2;
+        color: $inputIcon;
+        font-size: $inputIconSize;
+        pointer-events: none;
+    }
+    &__reset-icon {
+        position: absolute;
+        z-index: 1;
+        right: 13px;
+        top: calc(50% - 16px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        width: 24px;
+        font-size: 13px;
+        color: $inputPlaceholder;
+        cursor: pointer;
+        transition: color .2s ease;
+
+        &:hover {
+            color: $textMain;
+        }
+    }
+    &--white-bg {
+        .ui-input__input {
+            background: $white;
+        }
+    }
+    &--with-icon {
+        .ui-input__input {
+            padding-left: $inputIconPadding;
+        }
+        &.ui-input {
+            &--small {
+                .ui-input {
+                    &__input {
+                        padding-left: $smallInputIconPadding;
+                    }
+                    &__icon {
+                        top: 11px;
+                        font-size: $smallInputIconSize;
+                    }
+                }
+            }
+        }
+    }
+    &--error {
+        .ui-input__input {
+            border-color: $error !important;
+            background-color: $inputErrorBg !important;
+        }
+    }
+    &--small {
+        .ui-input__input {
+            height: $smallInputHeight;
+            padding: 0 $smallInputBasePadding;
+            font-size: $smallInputFontSize;
+        }
+    }
+    &--text-center {
+        .ui-input__input {
+            text-align: center;
+        }
+    }
+    &--phone-code {
+        .ui-input__input {
+            padding-left: 30px;
+        }
+        &:before {
+            content: '+';
+            position: absolute;
+            pointer-events: none;
+            left: 17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: $input;
+        }
+    }
+    &--disabled .ui-input__input,
+    &__input:disabled {
+        pointer-events: none;
+        opacity: .5;
+    }
+}

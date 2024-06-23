@@ -1,0 +1,129 @@
+image: dr-dev.ampr.network:443/devops/builder:1.1.1
+
+stages:
+  - ampr-build
+  - ampr-deploy
+
+.before_script_template: &before_script_template
+  before_script:
+    - | # dns, reduce queries
+      cat /opt/hosts >> /etc/hosts
+    - | # internal vars (if APPLICATION_NAME_DEFINED is set it will be used, otherwise CI_PROJECT_NAME)
+      [[ -z ${APPLICATION_NAME_DEFINED} ]] && export APPLICATION_NAME_DEFINED=${CI_PROJECT_NAME}
+      export APPLICATION_NAME=${APPLICATION_NAME_DEFINED}-${CI_COMMIT_REF_SLUG}
+      export ENV=${CI_ENVIRONMENT_NAME}
+      [[ -z ${INGRESS_HOST} ]] && export INGRESS_HOST=${APPLICATION_NAME}.${DOMAIN}
+      export DOCKER_IMAGE=${DR_HOST}/${CI_COMMIT_REF_SLUG}/${APPLICATION_NAME}
+      export DOCKER_IMAGE_TAG=1.0.${CI_PIPELINE_ID}
+      # [[ $ENV == "production" ]] && export INGRESS_TARGET=""
+    - | # outputs
+      echo ""
+      echo "[INFO] APPLICATION_NAME: ${APPLICATION_NAME}"
+      echo "[INFO] INGRESS_HOST:     ${INGRESS_HOST} (${INGRESS_TYPE}, proxied=${DNS_CF_PROXIED})"
+      echo "[INFO] INGRESS_TARGET:   ${INGRESS_TARGET}"
+      echo "[INFO] DOCKER:           ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}"
+      echo "[INFO] HELM:             ${APPLICATION_NAME}:${DOCKER_IMAGE_TAG} (${CM_HOST})"
+      echo "[INFO] ENV:              ${ENV}"
+
+# === BUILD ===
+.ampr-build:
+  stage: ampr-build
+  variables:
+    DOCKER_DRIVER: overlay2
+    XDG_CACHE_HOME: /cache
+  <<: *before_script_template
+  script:
+    - | # if Production
+      echo "[INFO] --- env check"
+      [[ $ENV == "production" ]] && echo "$(cat /opt/ips) $(echo $DR_HOST | cut -d":" -f1)" | tee -a /etc/hosts
+      [[ $ENV == "production" ]] && echo "$(cat /opt/ips) $(echo $CM_HOST | cut -d"/" -f3 | cut -d":" -f1)" | tee -a /etc/hosts
+    - | # NPM
+      echo "[INFO] --- NPM Build"
+      if [[ ${ENV} == "development" ]]; then 
+        npm set registry $NPM_HOST && npm install && npm run build-development
+      fi
+      if [[ ${ENV} == "staging" ]]; then 
+        npm set registry $NPM_HOST && npm install && npm run build-staging
+      fi
+      if [[ ${ENV} == "production" ]]; then 
+        npm set registry $NPM_HOST && npm install && npm run build
+      fi
+    - | # Docker
+      echo "[INFO] --- Docker Build (${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG})"
+      docker build --no-cache -t ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG} .
+      docker push ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}
+    - | # Helm
+      echo "[INFO] --- Helm Build (${CM_HOST})"
+      export DOCKER_IMAGE="$(echo $DR_HOST | cut -d":" -f1)/${CI_COMMIT_REF_SLUG}/${APPLICATION_NAME}"
+      curl -I ${CM_HOST}
+      helm repo add cm ${CM_HOST}
+      [[ -f ./helm/values.yaml.tpl ]] || exit 1
+      cd ./helm
+      envsubst '${APPLICATION_NAME} ${INGRESS_HOST} ${INGRESS_TYPE} ${DOCKER_IMAGE_TAG}' < ./Chart.yaml.tpl > ./Chart.yaml && rm -f ./Chart.yaml.tpl
+      envsubst '${APPLICATION_NAME} ${INGRESS_HOST} ${INGRESS_TYPE} ${INGRESS_TARGET} ${INGRESS_WHITELIST_SOURCE_RANGE} ${DNS_CF_PROXIED} ${DOCKER_IMAGE} ${DOCKER_IMAGE_TAG} ${ENV}' < values.yaml.tpl > ./values.yaml && rm -f ./values.yaml.tpl
+      helm lint && helm cm-push . cm
+  allow_failure: false
+
+ampr-build-dev:
+  environment:
+    name: development
+  extends: .ampr-build
+  only:
+    - develop
+    - /^tst[0-9]+$/
+
+# ampr-build-stg:
+#   environment:
+#     name: staging
+#   extends: .ampr-build
+#   only:
+#     - staging
+
+ampr-build-prod:
+  environment:
+    name: production
+  extends: .ampr-build
+  only:
+    - main
+
+# === DEPLOY ===
+.ampr-deploy:
+  stage: ampr-deploy
+  variables:
+    DOCKER_DRIVER: overlay2
+    XDG_CACHE_HOME: /cache
+  <<: *before_script_template
+  script:
+    - | # if Production
+      echo "[INFO] --- env check"
+      [[ $ENV == "production" ]] && echo "$(cat /opt/ips) $(echo $ARGO_HOST | cut -d":" -f1)" | tee -a /etc/hosts
+    - | # ArgoCD
+      echo "[INFO] --- Deploy App"
+      echo "[INFO] - argocd - login"   && /usr/bin/argocd login ${ARGO_HOST} --username ${ARGO_USER} --password ${ARGO_PASS} --grpc-web --insecure
+      echo "[INFO] - argocd - status"  && /usr/bin/argocd app wait ${APPLICATION_NAME} --operation --insecure
+      echo "[INFO] - argocd - change"  && /usr/bin/argocd app set ${APPLICATION_NAME} --revision ${DOCKER_IMAGE_TAG} --insecure
+      echo "[INFO] - argocd - sync"    && /usr/bin/argocd app sync ${APPLICATION_NAME} --revision ${DOCKER_IMAGE_TAG} --insecure
+      echo "[INFO] - argocd - wait"    && /usr/bin/argocd app wait ${APPLICATION_NAME} --health --timeout 600 --insecure
+  when: manual
+
+ampr-deploy-dev:
+  environment:
+    name: development
+  extends: .ampr-deploy
+  only:
+    - develop
+    - /^tst[0-9]+$/
+
+# ampr-deploy-stg:
+#   environment:
+#     name: staging
+#   extends: .ampr-deploy
+#   only:
+#     - staging
+
+ampr-deploy-prod:
+  environment:
+    name: production
+  extends: .ampr-deploy
+  only:
+    - main

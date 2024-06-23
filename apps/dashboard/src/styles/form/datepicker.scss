@@ -1,0 +1,114 @@
+$datepickerIntervalSelectWidth: 170px;
+
+.ui-datepicker {
+    position: relative;
+    z-index: 3;
+    height: $inputHeight;
+    background: $inputBg;
+    border: 1px solid $inputBorder;
+    border-radius: $borderRadius;
+
+    &__icon {
+        position: absolute;
+        top: 13px;
+        left: 11px;
+        z-index: 2;
+        color: $inputIcon;
+        font-size: $inputIconSize;
+        pointer-events: none;
+    }
+    &__reset-icon {
+        position: absolute;
+        z-index: 1;
+        right: 8px;
+        top: calc(50% - 16px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        width: 24px;
+        font-size: 13px;
+        color: $inputPlaceholder;
+        cursor: pointer;
+        transition: color .2s ease;
+
+        &:hover {
+            color: $textMain;
+        }
+    }
+    &__input {
+        width: 100%;
+        padding: 0 0 0 $inputIconPadding;
+        height: calc(#{$inputHeight} - 2px);
+        outline: none;
+        font-size: $inputFontSize;
+        font-weight: $inputFontWeight;
+        background: transparent;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+
+        &::placeholder {
+            color: $inputPlaceholder;
+            letter-spacing: normal;
+        }
+    }
+    &__interval-select {
+        margin: 0 24px 0 -20px;
+        width: $datepickerIntervalSelectWidth;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-right: 1px solid $borderExtraLight;
+    }
+    &__interval-select-item {
+        width: 100%;
+        padding: 8px 24px 8px 16px;
+        cursor: pointer;
+        background: $white;
+        font-weight: 500;
+        transition: background-color .2s ease;
+
+        &:hover {
+            background: $inputBg;
+        }
+        & + .ui-datepicker__interval-select-item {
+            margin-top: 8px;
+        }
+    }
+    &--small {
+        height: $smallInputHeight;
+
+        .ui-datepicker {
+            &__icon {
+                left: 11px;
+                top: 9px;
+                font-size: $smallInputIconSize;
+            }
+            &__input {
+                padding: 0 0 0 $smallInputIconPadding;
+                height: calc(#{$smallInputHeight} - 2px);
+                font-size: $smallInputFontSize;
+                letter-spacing: normal;
+            }
+        }
+    }
+    &--white-bg {
+        background: $white;
+    }
+    &--with-reset {
+        padding-right: 40px;
+    }
+    &--with-interval-select {
+        .react-datepicker__navigation--previous {
+            left: $datepickerIntervalSelectWidth;
+        }
+    }
+    &--text-center {
+        .ui-datepicker {
+            &__input {
+                text-align: center;
+            }
+        }
+    }
+}

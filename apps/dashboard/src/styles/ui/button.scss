@@ -1,0 +1,142 @@
+.ui-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    border-radius: $borderRadius;
+    font-size: 14px;
+    padding: 0 20px;
+    height: $inputHeight;
+    width: 300px;
+    max-width: 100%;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+
+    .base-loader {
+        font-size: 20px;
+        color: currentColor;
+    }
+    span {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &.ui-button {
+        &--main {
+            background: $accentMain;
+            color: $white;
+
+            &:hover {
+                background: darken($accentMain, 10);
+            }
+        }
+        &--secondary {
+            background: $accentSecondary;
+            color: $white;
+
+            .eclipse-loader {
+                &--small {
+                    div {
+                        border-top-color: $white;
+                        border-left-color: $white;
+                    }
+                }
+            }
+            &:hover {
+                background: darken($accentSecondary, 10);
+            }
+        }
+        &--negative {
+            background: $error;
+            color: $white;
+
+            &:hover {
+                background: darken($error, 10);
+            }
+        }
+        &--outline-main {
+            border: 1px solid $accentMain;
+            background: rgba($accentMain, 0);
+            color: $accentMain;
+
+            &:hover {
+                background: $accentMain;
+                color: $white;
+            }
+        }
+        &--outline-secondary {
+            border: 1px solid $accentSecondary;
+            background: rgba($accentSecondary, 0);
+            color: $accentSecondary;
+
+            &:hover {
+                background: $accentSecondary;
+                color: $white;
+            }
+        }
+        &--outline-secondary-main {
+            border: 1px solid $accentSecondary;
+            background: rgba($accentSecondary, 0);
+            color: $accentMain;
+
+            &:hover {
+                background: $accentSecondary;
+                color: $white;
+            }
+        }
+        &--outline-pending {
+            border: 1px solid $textLight;
+            background: rgba($textLight, 0);
+            color: $textLight;
+
+            &:hover {
+                background: $textLight;
+                color: $white;
+            }
+        }
+        &--outline-negative {
+            border: 1px solid $error;
+            background: rgba($error, 0);
+            color: $error;
+
+            &:hover {
+                background: $error;
+                color: $white;
+            }
+        }
+        &--pending {
+            border: 1px solid $textLight;
+            background: rgba($textLight, 0);
+            color: $textLight;
+
+            &:hover {
+                background: $textLight;
+                color: $white;
+            }
+        }
+        &--small {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 0 12px;
+            height: $smallInputHeight;
+            width: 220px;
+        }
+        &--no-actions {
+            pointer-events: none !important;
+        }
+        &--full {
+            width: 100%;
+        }
+        &--content {
+            width: fit-content;
+        }
+    }
+    &.ui-button--disabled,
+    &:disabled {
+        pointer-events: none;
+        opacity: .7;
+    }
+}

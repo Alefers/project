@@ -1,0 +1,60 @@
+.status-label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 12px;
+    border-radius: $borderRadius;
+    border: 1px solid;
+
+    &--green {
+        border-color: #D9ECE1;
+        background: #F2F9F5;
+        color: $iconSuccess;
+    }
+    &--red {
+        border-color: #F7E6E6;
+        background: #FFFAFA;
+        color: $error;
+    }
+    &--gray {
+        border-color: #C7D5E2;
+        background: #F6F6F6;
+        color: #43566B;
+    }
+    &--blue {
+        border-color: #DEEEFB;
+        background: #F6F8FC;
+        color: #378AF8;
+    }
+    &--small {
+        font-size: 11px;
+        line-height: 22px;
+        padding: 0 8px;
+    }
+    &--as-text {
+        width: fit-content;
+        line-height: 1.4;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: none;
+    }
+}
+
+.status-block {
+    border: 1px solid $borderNormal;
+    border-radius: $borderRadius;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        font-size: 18px;
+        font-weight: 500;
+    }
+}

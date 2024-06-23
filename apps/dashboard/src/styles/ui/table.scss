@@ -1,0 +1,43 @@
+table.page-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    min-width: 1200px;
+    font-size: 13px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td {
+        border: 0;
+        outline: 0;
+        vertical-align: baseline;
+        background: transparent;
+    }
+    tr {
+        display: table-row;
+        vertical-align: middle;
+    }
+    th,
+    td {
+        line-height: 1.43;
+        display: table-cell;
+        vertical-align: inherit;
+        border-bottom: 1px solid rgba(224, 224, 224, 1);
+        text-align: left;
+        padding: 6px 16px;
+    }
+    td {
+        color: $textMain;
+    }
+    th {
+        color: $textLight;
+        font-weight: 500;
+    }
+}

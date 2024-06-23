@@ -1,0 +1,25 @@
+.ui-info-block {
+    position: relative;
+    padding: 16px 16px 16px 72px;
+    border-radius: $contentBorderRadius;
+    border: 1px solid $borderLight;
+
+    h3 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    p {
+        font-size: 14px;
+
+        + p {
+            margin-top: 6px;
+        }
+    }
+    .svg-icon {
+        position: absolute;
+        top: 26px;
+        left: 26px;
+        font-size: 22px;
+        color: $accentSecondary;
+    }
+}

@@ -1,0 +1,46 @@
+.ui-textarea {
+    display: block;
+    height: 200px;
+    width: 100%;
+    padding: 12px $inputBasePadding;
+    font-size: $inputFontSize;
+    font-weight: $inputFontWeight;
+    color: $input;
+    border-radius: $borderRadius;
+    background: $inputBg;
+    resize: none;
+    border: 1px solid $inputBorder;
+    transition: background-color .2s ease, border-color .2s ease;
+
+    &__counter {
+        width: 100%;
+        margin-top: 3px;
+        font-size: 13px;
+        font-weight: 600;
+        color: $textExtraLight;
+        text-align: right;
+    }
+    &::placeholder {
+        color: $inputPlaceholder;
+    }
+    &:not(:focus):hover {
+        background: $inputHoverBg;
+    }
+    &:focus {
+        background: $inputFocusBg;
+    }
+    &--error {
+        border-color: $error !important;
+        background-color: $inputErrorBg !important;
+    }
+    &--has-rows {
+        height: auto;
+    }
+    &--white-bg {
+        background: $white;
+
+        &:not(:focus):hover {
+            background: $white;
+        }
+    }
+}

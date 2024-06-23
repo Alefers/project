@@ -1,0 +1,33 @@
+.icon-button-with-loader {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: border-color .2s ease;
+
+    &--white-secondary {
+        background: $white;
+        color: $accentSecondary;
+        border: 1px solid $white;
+    }
+    &--gray-secondary {
+        background: $white;
+        color: $accentSecondary;
+        border: 1px solid $borderExtraLight;
+    }
+    &--disabled {
+        opacity: .85;
+        pointer-events: none;
+    }
+    .base-loader,
+    .svg-icon {
+        pointer-events: none;
+    }
+    &:hover {
+        border-color: currentColor !important;
+    }
+}

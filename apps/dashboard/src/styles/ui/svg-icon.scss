@@ -1,0 +1,58 @@
+.svg-icon {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+
+    &.svg-icon {
+        &--decta {
+            width: 5.3334em;
+        }
+        &--loans {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: .11em solid currentColor;
+            border-radius: 50%;
+            padding-right: .05em;
+
+            span {
+                font-size: .63em;
+                font-weight: 600;
+            }
+        }
+        &--info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba($accentSecondary, .15);
+            user-select: none;
+
+            span {
+                font-size: .63em;
+                font-weight: 600;
+                color: $accentSecondary;
+            }
+        }
+        &--placeholder {
+            background: transparent;
+        }
+    }
+}
+
+$starInactive: #606060;
+$starActive: #F1A31D;
+
+.svg-icon-star {
+    stroke: $starInactive;
+    stroke-width: 0.064em;
+    fill: rgba($starActive, 0);
+    cursor: pointer;
+    transition: .3s ease stroke, .3s ease fill;
+
+    &--active {
+        stroke: $starActive;
+        fill: $starActive;
+    }
+}

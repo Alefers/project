@@ -1,0 +1,11 @@
+.icon-with-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: $borderRadius;
+    background: $boxLightBg;
+    font-size: 24px;
+    color: $accentSecondary;
+}

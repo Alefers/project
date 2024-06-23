@@ -1,0 +1,24 @@
+.code-input {
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity .2s ease;
+    gap: 8px;
+
+    input {
+        display: block;
+        height: 85px;
+        width: 60px;
+        border-radius: 12px;
+        background: $inputBg;
+        text-align: center;
+        font-size: 40px;
+        line-height: 1;
+        border: 1px solid $inputBorder;
+        color: $textMain;
+    }
+    &--disabled {
+        opacity: .3;
+        pointer-events: none;
+    }
+}

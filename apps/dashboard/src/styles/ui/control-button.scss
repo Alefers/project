@@ -1,0 +1,35 @@
+.control-button {
+    color: $heading;
+    font-weight: 700;
+    font-size: 13px;
+    padding: .4em .8em;
+    transition: color .2s ease, opacity .2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    &--left,
+    &--right {
+        position: absolute;
+        z-index: 1;
+        top: 30px;
+    }
+    &--left {
+        left: 40px;
+    }
+    &--right {
+        right: 40px;
+    }
+    &--disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+    .svg-icon {
+        font-size: .7em;
+        transform: rotate(90deg);
+        margin-right: .5em;
+    }
+    &:hover {
+        color: darken($heading, 20);
+    }
+}

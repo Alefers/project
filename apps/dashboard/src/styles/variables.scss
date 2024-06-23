@@ -1,0 +1,134 @@
+
+// Main colors
+$scheme_1: #172743; // #172A46, #1B2B45
+$scheme_2: #43566B; // #465A73
+$scheme_3: #7F8EA3; // #7F8B9C, #7A8A9C
+$scheme_4: #EBF2FB; // #E9F2FE, #EEF8FF
+$scheme_5: #378AF8;
+$scheme_6: #64778C; // #677787, #677789
+$scheme_7: #d5dee8; // #D5DEE8
+$scheme_8: #B8C8D8; // #A0B3C1
+$scheme_9: #F6F8FC; // #F5F8FE
+$scheme_10: #DEEEFB; // #DDF1FC
+
+
+$accentMain: $scheme_1;
+$accentSecondary: $scheme_5;
+
+// Base
+$white: #FFFFFF;
+$error: #C83532;
+$success: #46A372;
+$borderRadius: 7px;
+$contentLineHeight: 1.27;
+
+$contentBg: $white;
+$contentBorderRadius: 10px;
+$contentBorder: #E9EEF6;
+
+$formElementsGap: 8px;
+
+// Text colors
+$textMain: $scheme_1;
+$textLight: $scheme_3;
+$textExtraLight: lighten($scheme_3, 20);
+$textMedium: $scheme_2;
+$textLightOnMain: $scheme_8;
+
+// Common
+$dropShadow: #0B1F3C;
+$mainColBg: $scheme_9;
+$heading: $scheme_6;
+$borderNormal: #C7D5E2;
+$borderLight: $scheme_7;
+$borderExtraLight: $scheme_9;
+
+// Icons
+$iconError: #CC6B6B;
+$iconSuccess: $success;
+$iconPending: $scheme_6;
+$iconComplete: $scheme_5;
+$iconCompleteBg: $scheme_4;
+
+// Input
+$input: #0B1F3C;
+$inputBg: $scheme_9;
+$inputPlaceholder: $scheme_8;
+$inputLabel: $scheme_2;
+$inputErrorBg:#FFFDFD;
+$inputWrapperErrorBg: #F7E6E6;
+$inputFocusBg: $white;
+$inputBorder: #D4DBDE;
+$inputHoverBg: #E1E9F4;
+$inputHeight: 46px;
+$smallInputHeight: 36px;
+$inputFontSize: 14px;
+$smallInputFontSize: 13px;
+$inputFontWeight: 500;
+$inputBasePadding: 20px;
+$smallInputBasePadding: 12px;
+$inputIconPadding: 40px;
+$smallInputIconPadding: 35px;
+$inputIconSize: 18px;
+$smallInputIconSize: 15px;
+$inputIcon: $scheme_3;
+$searchInputBg: #F2F5FB;
+$checkboxBorder: $scheme_7;
+
+//Navigation
+$navLink: $scheme_8;
+$navLinkHover: #F0F4FB;
+
+// Other
+$modalBg: $white;
+$modalBorderRadius: 15px;
+$boxLightBg: $scheme_10;
+
+$buttonDisabledBg: #808080;
+
+$closeButtonBg: #F8FAFB;
+
+// Layouts
+$mobileMaxWidth: 767px;
+$mobileSmallMaxWidth: 459px;
+$tabletMaxWidth: 1279px;
+$laptopMaxWidth: 1599px;
+
+$desktopNavColWidth: 255px;
+$laptopNavColWidth: 220px;
+
+@mixin mobileLayout {
+    @media screen and (max-width: #{$mobileMaxWidth}) {
+        @content;
+    }
+}
+@mixin mobileLayoutSmall {
+    @media screen and (max-width: #{$mobileSmallMaxWidth}) {
+        @content;
+    }
+}
+@mixin tabletLayout {
+    @media screen and (min-width: #{$mobileMaxWidth + 1px}) and (max-width: #{$tabletMaxWidth}) {
+        @content;
+    }
+}
+@mixin laptopLayout {
+    @media screen and (max-width: #{$laptopMaxWidth}) {
+        @content;
+    }
+}
+@mixin desktopLayout {
+    @media screen and (min-width: #{$tabletMaxWidth + 1px}) {
+        @content;
+    }
+}
+@mixin overMobileLayout {
+    @media screen and (min-width: #{$mobileMaxWidth + 1px}) {
+        @content;
+    }
+}
+@mixin belowDesktopLayout {
+    @media screen and (max-width: #{$tabletMaxWidth}) {
+        @content;
+    }
+}

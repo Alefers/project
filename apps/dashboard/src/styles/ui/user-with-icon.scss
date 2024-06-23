@@ -1,0 +1,79 @@
+.user-with-icon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &__icon {
+        flex: 0 0 40px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background: $accentMain;
+        color: $white;
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        position: relative;
+    }
+    &__text {
+        flex: 0 0 calc(100% - 56px);
+        width: calc(100% - 56px);
+        margin-left: 16px;
+
+        div {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1;
+        }
+    }
+    &__name {
+        color: $textMain;
+        font-size: 14px;
+        font-weight: 700;
+    }
+    &__desc {
+        margin-top: 6px;
+        color: $heading;
+        font-size: 12px;
+    }
+    &--personal {
+        .user-with-icon {
+            &__icon {
+                background: #0A4A7A;
+            }
+        }
+    }
+    &--as-add-button {
+        .user-with-icon {
+            &__icon {
+                background: $accentSecondary;
+                font-size: 30px;
+            }
+            &__name {
+                color: $accentSecondary;
+                font-weight: 400;
+            }
+        }
+    }
+    &--current {
+        .user-with-icon {
+            &__icon {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    height: 11px;
+                    width: 11px;
+                    border-radius: 50%;
+                    border: 3px solid $accentSecondary;
+                    background: $white;
+                }
+            }
+        }
+    }
+}

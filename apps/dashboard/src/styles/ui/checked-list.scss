@@ -1,0 +1,20 @@
+.checked-list {
+    li {
+        position: relative;
+        padding-left: 36px;
+
+        .svg-icon {
+            position: absolute;
+            top: calc(50% - .5em);
+            left: 0;
+            font-size: 24px;
+            color: $accentSecondary;
+        }
+        & + li {
+            margin-top: 16px;
+        }
+    }
+    b {
+        font-weight: 700;
+    }
+}

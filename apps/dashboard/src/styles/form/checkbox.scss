@@ -1,0 +1,118 @@
+.ui-checkbox {
+    display: block;
+    position: relative;
+    padding: 12px 16px 12px 40px;
+    color: $textMedium;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.6;
+    border-radius: $borderRadius;
+    border: 1px solid $checkboxBorder;
+    cursor: pointer;
+    user-select: none;
+    transition: color .2s ease;
+
+    input {
+        display: none;
+
+        &:checked {
+            + .ui-checkbox__view {
+
+                .svg-icon {
+                    display: block;
+                }
+            }
+        }
+    }
+    &__view {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        font-size: 12px;
+        height: 14px;
+        width: 14px;
+        border-radius: 3px;
+        color: $accentSecondary;
+        border: 1px solid $borderNormal;
+
+        .svg-icon {
+            display: none;
+        }
+    }
+    &--general {
+        font-size: 14px;
+        color: $textMedium;
+        padding: 8px 16px 8px 32px;
+        border: none;
+
+        .ui-checkbox__view {
+            top: 10px;
+            left: 0;
+            font-size: 16px;
+            height: 20px;
+            width: 20px;
+            border-radius: 5px;
+        }
+    }
+    &--from-right {
+
+    }
+    &--error {
+        border-color: $error;
+    }
+    &--disabled {
+        pointer-events: none;
+
+        .ui-checkbox__view {
+            opacity: .8;
+        }
+    }
+    &--small {
+        font-size: 11px;
+        padding: 8px 12px 8px 40px;
+
+        .ui-checkbox__view {
+            top: 11px;
+            left: 12px;
+            font-size: 12px;
+        }
+    }
+    &--el {
+        width: fit-content;
+        padding: 0 0 0 36px;
+        border: none;
+        min-height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+
+        input {
+            &:checked {
+                + .ui-checkbox__view {
+                    border-color: $accentMain;
+                    background: $accentMain;
+                }
+            }
+        }
+        .ui-checkbox__view {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            font-size: 16px;
+            height: 20px;
+            width: 20px;
+            color: $white;
+            transform: translateY(-50%);
+            transition: border-color .2s ease, background-color .2s ease;
+        }
+        &.ui-checkbox--error {
+            color: $error;
+
+            .ui-checkbox__view {
+                border-color: $error;
+            }
+        }
+    }
+}

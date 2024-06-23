@@ -1,0 +1,151 @@
+.ui-modal-portal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    background: rgba($dropShadow, .7);
+    backdrop-filter: blur(2px);
+    display: flex;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &--notice {
+        z-index: 120;
+    }
+    &--exclude-left-menu {
+        left: $desktopNavColWidth;
+    }
+    &__content {
+        position: relative;
+        z-index: 1;
+        max-width: 100%;
+        margin: auto;
+        color: $textMain;
+
+        .ui-close-button {
+            position: absolute;
+            z-index: 1;
+            top: 16px;
+            right: 16px;
+        }
+    }
+}
+
+@include laptopLayout {
+    .ui-modal-portal {
+        &--exclude-left-menu {
+            left: $laptopNavColWidth;
+        }
+    }
+}
+
+.base-modal,
+.ui-base-modal,
+.promo-modal,
+.custom-modal {
+    background: $contentBg;
+    border-radius: $contentBorderRadius;
+    box-shadow: 0 0 5px rgba($textMain, .1);
+    max-width: 100%;
+}
+
+// Current modal container styles version
+.base-modal {
+    padding: 60px;
+    width: 900px;
+}
+
+// New modal container styles version
+.ui-base-modal {
+    padding: 40px;
+    width: 800px;
+    text-align: center;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    p {
+        font-size: 14px;
+        color: $textMedium;
+    }
+}
+
+.notice-modal {
+    width: 660px;
+    padding: 60px;
+    background: $contentBg;
+    border-radius: $contentBorderRadius;
+    text-align: center;
+
+    &__title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+    &__content {
+        font-size: 14px;
+        line-height: 1.8;
+        color: $heading;
+
+        p + p {
+            margin-top: 10px;
+        }
+    }
+    &__action {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.promo-modal {
+    padding: 32px;
+    width: 800px;
+    color: $textMain;
+
+    h2, h3 {
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-align: center;
+        max-width: 90%;
+    }
+    h2 {
+        margin: 0 auto 32px;
+        color: $accentSecondary;
+    }
+    h3 {
+        margin: 0 auto 24px;
+    }
+    ul {
+        margin: 24px 0;
+    }
+    li {
+        position: relative;
+        display: block;
+        padding-left: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 0;
+            display: block;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background: $accentSecondary;
+        }
+        & + li {
+            margin-top: 12px;
+        }
+    }
+}

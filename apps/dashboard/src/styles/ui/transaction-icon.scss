@@ -1,0 +1,28 @@
+.transaction-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    background: $mainColBg;
+
+    .svg-icon {
+        font-size: .75em;
+    }
+    &--in {
+        color: $success;
+    }
+    &--out {
+        color: $accentSecondary;
+    }
+    &--exchange {
+        color: $heading;
+    }
+    &--card {
+        .svg-icon {
+            color: $textLight;
+            font-size: .625em;
+        }
+    }
+}

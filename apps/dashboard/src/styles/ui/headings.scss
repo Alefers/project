@@ -1,0 +1,47 @@
+.heading {
+    font-weight: 700;
+    line-height: $contentLineHeight;
+    color: $textMain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &--h1 {
+        font-size: 27px;
+        margin-bottom: 30px;
+    }
+    &--h2 {
+        font-size: 19px;
+        margin-bottom: 20px;
+    }
+    &--h3 {
+        font-size: 14px;
+    }
+    &--left {
+        justify-content: flex-start;
+        text-align: left;
+    }
+}
+
+.el-heading {
+    line-height: 1.4;
+    font-weight: 600;
+    text-align: center;
+
+    &--title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+    &--h1 {
+        font-size: 24px;
+    }
+    &--h2 {
+        font-size: 22px;
+    }
+}
+.el-p {
+    text-align: center;
+    font-size: 14px;
+    color: $textMedium;
+}

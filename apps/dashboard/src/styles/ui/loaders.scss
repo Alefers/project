@@ -1,0 +1,83 @@
+.base-loader {
+    position: relative;
+    height: 1em;
+    width: 1em;
+}
+
+.loader12 {
+    color: $accentSecondary;
+
+    .svg-icon {
+        animation: 2s infinite rotate12 steps(12, end);
+    }
+}
+
+@keyframes rotate12 {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.eclipse-loader {
+    div {
+        position: relative;
+        height: 50%;
+        width: 100%;
+        overflow: hidden;
+        transform-origin: 50% 100%;
+        animation: rotateEclipseLoader 2s linear infinite;
+
+        &:after{
+            content: '';
+            border-radius: 50%;
+            position: absolute;
+            inset: 0 0 -100%;
+            box-shadow: 0 .02em 0 $accentSecondary inset;
+        }
+    }
+    &--small {
+        div {
+            height: 100%;
+            transform-origin: 50% 50%;
+            border-radius: 50%;
+            border: .02em solid transparent;
+            border-top-color: $accentSecondary;
+            border-left-color: $accentSecondary;
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+@keyframes rotateEclipseLoader {
+    0% { transform: rotate(0)}
+    100% { transform: rotate(360deg)}
+}
+
+.loader-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    text-align: center;
+
+    .base-loader {
+        font-size: 65px;
+    }
+    &--medium {
+        padding: 30px 0;
+
+        .base-loader {
+            font-size: 30px;
+        }
+    }
+}
+
+.ampere-loader {
+    display: block;
+    width: 7.955em;
+    height: 1em;
+}

@@ -1,0 +1,20 @@
+.ui-close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: $closeButtonBg;
+    font-size: 6px;
+    transition: background-color .2s ease;
+
+    svg {
+        display: block;
+        height: 1em;
+        width: 1em;
+    }
+    &:hover {
+        background: darken($closeButtonBg, 10);
+    }
+}

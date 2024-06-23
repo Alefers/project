@@ -1,0 +1,53 @@
+.ui-options-select {
+    width: 100%;
+    line-height: $contentLineHeight;
+
+    &__item {
+        min-height: 65px;
+        padding: 15px 60px 15px 55px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        & > span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            z-index: 1;
+            right: 20px;
+            top: calc(50% - 7px);
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            border: 1px solid $borderNormal;
+        }
+        &--selected {
+            & > span {
+                &:before {
+                    content: '';
+                    display: block;
+                    height: 6px;
+                    width: 6px;
+                    border-radius: 50%;
+                    background: $accentSecondary;
+                }
+            }
+            .ui-options-select {
+                &__item-text {
+                    color: $accentSecondary;
+                }
+            }
+        }
+        & + & {
+            border-top: 1px solid $borderLight;
+        }
+    }
+    &__item-text {
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        color: $textMain;
+    }
+}

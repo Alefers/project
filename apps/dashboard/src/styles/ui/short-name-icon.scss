@@ -1,0 +1,26 @@
+.short-name-icon {
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    background: currentColor;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__abbr {
+        font-size: 0.425em;
+        font-weight: 600;
+        color: $white;
+        text-transform: uppercase;
+    }
+    &__currency {
+        font-size: 0.37em;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        overflow: hidden;
+    }
+}

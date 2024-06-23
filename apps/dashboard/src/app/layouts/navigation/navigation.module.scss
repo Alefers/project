@@ -1,0 +1,79 @@
+@import "src/styles/variables";
+
+
+.nav {
+    position: fixed;
+    z-index: 10;
+    inset: 0 auto 0 0;
+    width: 160px;
+    padding: 40px 0;
+    background: $accentMain;
+    color: $white;
+}
+.logo {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+.links {
+    padding: 0 20px;
+    font-size: 15px;
+}
+.item {
+    & + & {
+        margin-top: 20px;
+    }
+}
+.block {
+    position: relative;
+    cursor: pointer;
+
+    &.isOpen {
+        .arrow {
+            transform: rotate(180deg);
+        }
+    }
+    &.active {
+        .title {
+            color: $accentSecondary;
+        }
+    }
+    &:not(.active):hover {
+        .title {
+            color: $accentSecondary;
+        }
+        .arrow {
+            color: $white;
+        }
+    }
+}
+.title {
+    color: $textLight;
+    transition: color .2s ease;
+}
+.arrow {
+    position: absolute;
+    font-size: 11px;
+    color: $textLight;
+    right: -4px;
+    top: 6px;
+    transform: rotate(0deg);
+    transition: transform .2s ease, color .2s ease;
+}
+.link {
+    display: block;
+    color: $textLight;
+    transition: color .2s ease;
+    line-height: 1.15;
+
+    &.sub {
+        margin: 16px 0 0 20px;
+    }
+    &.active {
+        color: $white;
+    }
+    &:hover {
+        color: $accentSecondary;
+    }
+}

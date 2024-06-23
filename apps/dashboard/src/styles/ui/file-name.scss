@@ -1,0 +1,15 @@
+.ui-file-name {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+
+    &__name {
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    &__extension {
+        width: fit-content;
+    }
+}

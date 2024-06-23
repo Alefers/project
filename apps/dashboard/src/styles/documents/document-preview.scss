@@ -1,0 +1,39 @@
+.document-preview {
+    border: 1px solid #D0D4D8;
+    max-width: 100%;
+    position: relative;
+
+    iframe {
+        border: none;
+        display: block;
+        width: 100%;
+    }
+    &__frame-loader,
+    &__no-data {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__frame-loader {
+        background: rgba($dropShadow, .1);
+        backdrop-filter: blur(2px);
+        display: none;
+
+        .base-loader {
+            font-size: 60px;
+        }
+    }
+    &__no-data {
+        background: $contentBg;
+    }
+    &--loading {
+        .document-preview {
+            &__frame-loader {
+                display: flex;
+            }
+        }
+    }
+}
